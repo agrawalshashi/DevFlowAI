@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>DevFlow AI</title>
+
+<link rel="stylesheet" href="/style.css">
+
+<!-- Markdown renderer -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+```
+
+</head>
+
+<body>
+
+<div class="app-shell">
+
+```
+<!-- SIDEBAR -->
+<aside class="sidebar">
+
+    <div class="brand">
+
+        <div class="brand-mark">D</div>
+
+        <div>
+            <h1>DevFlow</h1>
+            <span>PROJECT ORCHESTRATOR</span>
+        </div>
+
+    </div>
+
+    <div class="side-label">WORKFLOW</div>
+
+    <div class="workflow">
+
+        <div class="workflow-item active" data-stage="manager">
+            <span>01</span>
+
+            <div>
+                <b>Manager</b>
+                <small>Project strategy</small>
+            </div>
+        </div>
+
+        <div class="workflow-item" data-stage="requirements">
+            <span>02</span>
+
+            <div>
+                <b>Requirements</b>
+                <small>Scope definition</small>
+            </div>
+        </div>
+
+        <div class="workflow-item" data-stage="research">
+            <span>03</span>
+
+            <div>
+                <b>Research</b>
+                <small>Technology scan</small>
+            </div>
+        </div>
+
+        <div class="workflow-item" data-stage="architecture">
+            <span>04</span>
+
+            <div>
+                <b>Architecture</b>
+                <small>System design</small>
+            </div>
+        </div>
+
+        <div class="workflow-item" data-stage="planner">
+            <span>05</span>
+
+            <div>
+                <b>Planner</b>
+                <small>Execution roadmap</small>
+            </div>
+        </div>
+
+        <div class="workflow-item" data-stage="review">
+            <span>06</span>
+
+            <div>
+                <b>Reviewer</b>
+                <small>Quality check</small>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="side-footer">
+
+        <span class="status-dot"></span>
+
+        Fast MVP Mode
+
+    </div>
+
+</aside>
+
+
+<!-- MAIN -->
+<main class="main">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+
+        <div>
+
+            <span class="eyebrow">
+                ENGINEERING WORKSPACE
+            </span>
+
+            <h2>
+                Turn ideas into buildable systems.
+            </h2>
+
+        </div>
+
+        <div class="system-status">
+
+            <span class="pulse"></span>
+
+            SYSTEM ONLINE
+
+        </div>
+
+    </header>
+
+
+    <!-- INPUT -->
+    <section class="command-panel">
+
+        <div class="command-top">
+
+            <div>
+
+                <span class="section-number">
+                    01
+                </span>
+
+                <div>
+
+                    <h3>
+                        Project Intent
+                    </h3>
+
+                    <p>
+                        Describe what you want to build.
+                        DevFlow will transform it into an engineering blueprint.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <span id="charCount">
+                0 characters
+            </span>
+
+        </div>
+
+
+        <textarea
+            id="idea"
+            placeholder="Example: I want to build an AI resume analyzer that compares resumes with job descriptions..."
+        ></textarea>
+
+
+        <div class="command-bottom">
+
+            <div class="examples">
+
+                <button
+                    class="example"
+                    data-example="I want to build an AI resume analyzer">
+                    Resume Analyzer
+                </button>
+
+                <button
+                    class="example"
+                    data-example="I want to build an AI meeting summarizer">
+                    Meeting AI
+                </button>
+
+                <button
+                    class="example"
+                    data-example="I want to build a student productivity platform">
+                    Student Platform
+                </button>
+
+            </div>
+
+
+            <button
+                id="analyze"
+                class="run-button">
+
+                <span>
+                    RUN DEVFLOW
+                </span>
+
+                <b>
+                    →
+                </b>
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- EXECUTION -->
+    <section
+        id="loading"
+        class="execution"
+        style="display:none">
+
+        <div class="execution-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    LIVE PIPELINE
+                </span>
+
+                <h3>
+                    Engineering in progress
+                </h3>
+
+            </div>
+
+            <strong id="pipelineStatus">
+                EXECUTING
+            </strong>
+
+        </div>
+
+
+        <div class="agent-trace">
+
+            <div class="trace-agent">
+                <i></i>
+                Manager
+            </div>
+
+            <div class="trace-agent">
+                <i></i>
+                Requirements
+            </div>
+
+            <div class="trace-agent">
+                <i></i>
+                Research
+            </div>
+
+            <div class="trace-agent">
+                <i></i>
+                Architect
+            </div>
+
+            <div class="trace-agent">
+                <i></i>
+                Planner
+            </div>
+
+            <div class="trace-agent">
+                <i></i>
+                Reviewer
+            </div>
+
+        </div>
+
+
+        <p id="loadingText">
+            Starting DevFlow pipeline...
+        </p>
+
+    </section>
+
+
+    <!-- OUTPUT -->
+    <section class="output-section">
+
+        <div class="output-header">
+
+            <div>
+
+                <span class="eyebrow">
+                    02 / BLUEPRINT
+                </span>
+
+                <h3>
+                    Engineering Output
+                </h3>
+
+            </div>
+
+
+            <div class="output-actions">
+
+                <button id="copyBlueprint">
+                    COPY
+                </button>
+
+                <button id="downloadBlueprint">
+                    EXPORT
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- TABS -->
+        <div class="tabs">
+
+            <button
+                class="tab active"
+                data-tab="overview">
+                OVERVIEW
+            </button>
+
+            <button
+                class="tab"
+                data-tab="architecture">
+                SYSTEM MAP
+            </button>
+
+            <button
+                class="tab"
+                data-tab="requirements">
+                REQUIREMENTS
+            </button>
+
+            <button
+                class="tab"
+                data-tab="research">
+                TECH STACK
+            </button>
+
+            <button
+                class="tab"
+                data-tab="planner">
+                TASKS
+            </button>
+
+            <button
+                class="tab"
+                data-tab="review">
+                REVIEW
+            </button>
+
+        </div>
+
+
+        <div
+            id="result"
+            class="result">
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    +
+                </div>
+
+                <h3>
+                    Blueprint waiting for input
+                </h3>
+
+                <p>
+                    Enter a project idea above and let DevFlow
+                    turn it into an actionable engineering plan.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+
+        <span>
+            DEVFLOW AI
+        </span>
+
+        <span>
+            PROJECT ENGINEERING ORCHESTRATOR
+        </span>
+
+        <span>
+            v0.1 MVP
+        </span>
+
+    </footer>
+
+</main>
+```
+
+</div>
+
+<script src="/script.js"></script>
+
+</body>
+</html>
